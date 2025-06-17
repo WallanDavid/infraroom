@@ -1,4 +1,4 @@
-# 🏗️ InfraRoom — API segura com Fastify, Docker e visão GCP-ready
+# 🏗️ InfraRoom — Arquitetura GCP-like com Docker, Fastify e Comunicação entre Serviços
 
 [![Node.js](https://img.shields.io/badge/Node.js-18.x-green)](https://nodejs.org/)
 [![Fastify](https://img.shields.io/badge/Fastify-Framework-lightgrey)](https://www.fastify.io/)
@@ -6,89 +6,107 @@
 [![Deploy](https://img.shields.io/badge/Deploy-Railway-informational)](https://railway.app/)
 [![Status](https://img.shields.io/badge/Status-em%20andamento-yellow)]()
 
-> InfraRoom é uma API rápida e modular construída com Node.js + Fastify, pronta para ser escalada com Docker, GCP, e integração segura com microserviços. Este projeto simula a estrutura de uma aplicação real com comunicação entre serviços e arquitetura em nuvem.
+> InfraRoom é uma API Node.js + Fastify dockerizada que simula uma infraestrutura em nuvem GCP-like.
+> O projeto foi arquitetado para representar uma VM se comunicando com um serviço externo (Cloud Run), ambos isolados via rede Docker (VPC simulada), e com plano de expansão real para GCP.
 
 ---
 
 ## ⚙️ Tecnologias Utilizadas
 
-- ⚡ [Fastify](https://www.fastify.io/) — Framework Node.js moderno e veloz
-- 🐳 [Docker](https://www.docker.com/) — Empacotamento e isolamento do app
-- ☁️ Railway — Hospedagem temporária para demonstração online
-- 🔜 GCP (Google Cloud Platform) — Planejado para migração completa
-- 🧪 Tap — Framework de testes automatizados
+- ⚡ Fastify — framework leve e rápido para Node.js
+- 🐳 Docker — empacotamento e rede isolada entre containers
+- 🔁 Axios — comunicação HTTP entre serviços
+- ☁️ Railway — deploy temporário
+- 🔐 Arquitetura GCP-like: VM (Compute), Cloud Run, VPC, Storage
+- 🧪 Tap — testes automatizados
+- 🗺️ Excalidraw — diagrama visual da arquitetura
 
 ---
 
 ## 🔌 Endpoints disponíveis
 
-| Método | Rota           | Descrição                             |
-|--------|----------------|----------------------------------------|
-| GET    | `/`            | Retorna mensagem de boas-vindas       |
-| GET    | `/cloud-room`  | Simula comunicação com outro serviço  |
+| Serviço           | Método | Rota             | Descrição                                     |
+|------------------|--------|------------------|-----------------------------------------------|
+| InfraRoom (VM)   | GET    | `/`              | Mensagem de boas-vindas                       |
+| InfraRoom (VM)   | GET    | `/cloud-room`    | Consulta o microserviço Cloud Run simulado    |
+| Cloud Run Mock   | GET    | `/external-data` | Resposta do microserviço separado             |
+
+---
+
+## 🧱 Arquitetura Simulada (GCP-Like)
+
+![Arquitetura](./docs/infra-architecture.png)
+
+> Comunicação entre containers Docker simula:
+>
+> - VM rodando Node.js
+> - Serviço externo estilo Cloud Run
+> - Rede isolada simulando VPC
+> - Comunicação segura interna
 
 ---
 
 ## ▶️ Como rodar localmente
 
 ```bash
-# 1. Clonar o repositório
+# 1. Clonar o projeto
 git clone https://github.com/WallanDavid/infraroom.git
-cd infraroom
+cd infraroom/infraroom
 
-# 2. Build e subir com Docker
+# 2. Instalar dependências do serviço principal (opcional, só se alterar)
+npm install
+
+# 3. Subir os containers (inclui VM e Cloud Run simulado)
 docker-compose build
 docker-compose up
 
 Acesse:
-http://localhost:3000/
-http://localhost:3000/cloud-room
 
-🗂️ Estrutura de Arquivos
-infraroom/
-├── Dockerfile
-├── docker-compose.yml
-├── package.json
-├── server.js
-├── storage.js
-├── .env.example
-├── tests/
-│   └── server.test.js
-└── README.md
+http://localhost:3000/ → API principal (VM)
 
-✅ Testes Automatizados
-Este projeto possui cobertura automatizada com tap, incluindo os endpoints:
+http://localhost:3000/cloud-room → Comunicação entre serviços
 
-/ — Mensagem de boas-vindas
+http://localhost:4000/external-data → Serviço Cloud Run simulado
 
-/cloud-room — Simulação de acesso à Cloud Room
-
-Para rodar os testes:
+🧪 Testes Automatizados
 npm test
 
-Cobertura funcional ativa.
+Testes criados com tap
+
+Cobertura funcional dos endpoints
+
+Pode ser expandido com GitHub Actions
 
 
-📦 Deploy (Railway)
-1. Este projeto pode ser implantado diretamente via Railway.app:
-2. Crie uma conta no Railway
-3. Clique em “New Project” > “Deploy from GitHub Repo”
-4. Selecione o repositório infraroom
-5. Railway detecta automaticamente o Dockerfile
-6. Aguarde o deploy e acesse a URL gerada
+📦 Estrutura de Arquivos
+infraroom/
+├── cloud-run-service/
+│   ├── Dockerfile
+│   ├── server.js
+│   └── package.json
+├── docs/
+│   └── infra-architecture.png
+├── tests/
+│   └── server.test.js
+├── Dockerfile
+├── docker-compose.yml
+├── server.js
+├── storage.js
+├── infra.md
+├── .env.example
+└── README.md
 
 
-🔭 Visão de Expansão: Google Cloud (GCP)
-O projeto foi arquitetado com base em padrões de microsserviços escaláveis e está pronto para ser migrado para a infraestrutura da Google Cloud:
+☁️ Plano de Expansão para GCP
+ Simulação local de VM (Compute Engine)
 
-✅ Planejamento GCP:
-Componente Objetivo
-🖥️ VM (Compute Engine) Rodar o container Docker com a API principal
-🧠 Cloud Room Simular segundo microserviço ou backend externo
-📦 Cloud Storage Armazenamento de logs, imagens, arquivos persistentes
-🔐 VPC + VPN Segura Isolamento da rede para tráfego seguro e escalável
-🌐 Load Balancer Distribuir carga entre múltiplas instâncias (futuramente)
+ Microserviço separado simulando Cloud Run
 
+ Comunicação isolada por rede Docker (VPC simulada)
+
+ Armazenamento com mock do Cloud Storage
+
+ Possível migração 1:1 para ambiente real GCP
 
 ✍️ Autor
 Feito com 💻 por Wallan David

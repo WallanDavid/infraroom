@@ -1,6 +1,14 @@
-version: '3'
 services:
   infraroom:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"
+    depends_on:
+      - cloudrun
+
+  cloudrun:
+    build:
+      context: ./cloud-run-service
+      dockerfile: Dockerfile
