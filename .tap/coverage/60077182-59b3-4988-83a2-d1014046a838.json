@@ -1,0 +1,61 @@
+{
+  "result": [
+    {
+      "scriptId": "639",
+      "url": "file:///C:/Users/bobwa/Documents/infraroom/infraroom/server.js",
+      "functions": [
+        {
+          "functionName": "",
+          "ranges": [
+            {
+              "startOffset": 0,
+              "endOffset": 653,
+              "count": 1
+            },
+            {
+              "startOffset": 412,
+              "endOffset": 651,
+              "count": 0
+            }
+          ],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "",
+          "ranges": [
+            {
+              "startOffset": 145,
+              "endOffset": 213,
+              "count": 1
+            }
+          ],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "",
+          "ranges": [
+            {
+              "startOffset": 246,
+              "endOffset": 318,
+              "count": 1
+            }
+          ],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "",
+          "ranges": [
+            {
+              "startOffset": 465,
+              "endOffset": 646,
+              "count": 0
+            }
+          ],
+          "isBlockCoverage": false
+        }
+      ]
+    }
+  ],
+  "timestamp": 553155.376774,
+  "source-map-cache": {}
+}

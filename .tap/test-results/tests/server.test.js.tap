@@ -1,0 +1,18 @@
+TAP version 14
+{"level":30,"time":1750163137651,"pid":15016,"hostname":"DESKTOP-Q723D34","reqId":"req-1","req":{"method":"GET","url":"/","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+# Subtest: GET / retorna mensagem de boas-vindas
+    ok 1 - should be equal
+    ok 2 - should be equivalent
+    1..2
+ok 1 - GET / retorna mensagem de boas-vindas # time=28.079ms
+
+# Subtest: GET /cloud-room retorna status da Cloud Room
+    ok 1 - should be equal
+    ok 2 - should match pattern
+    1..2
+ok 2 - GET /cloud-room retorna status da Cloud Room # time=1.35ms
+
+{"level":30,"time":1750163137655,"pid":15016,"hostname":"DESKTOP-Q723D34","reqId":"req-1","res":{"statusCode":200},"responseTime":3.375699996948242,"msg":"request completed"}
+{"level":30,"time":1750163137661,"pid":15016,"hostname":"DESKTOP-Q723D34","reqId":"req-2","req":{"method":"GET","url":"/cloud-room","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1750163137661,"pid":15016,"hostname":"DESKTOP-Q723D34","reqId":"req-2","res":{"statusCode":200},"responseTime":0.2405000925064087,"msg":"request completed"}
+1..2

@@ -1,0 +1,26 @@
+{
+  "name": "infraroom",
+  "version": "1.0.0",
+  "description": "API segura com Fastify, Docker e visão GCP-ready",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "tap"
+  },
+  "keywords": [
+    "api",
+    "fastify",
+    "docker",
+    "gcp",
+    "infraestrutura"
+  ],
+  "author": "Wallan Peixoto",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "fastify": "^5.4.0"
+  },
+  "devDependencies": {
+    "tap": "^21.1.0"
+  }
+}
